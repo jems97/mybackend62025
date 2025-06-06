@@ -22,7 +22,7 @@ Este proyecto es una aplicacion  web para gestionar tareas, construida con larav
 
 ## Alojamiento web
 
-Se utilizo como alojamiento web Rialway. 
+Se utilizo como alojamiento web Railway. 
 
 ## Ejecutar la aplicacion local
 
