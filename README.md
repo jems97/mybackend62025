@@ -34,24 +34,23 @@ Pasos:
 
 ## Uso de procedimientos almacenados
 
-Los procedimientos almacenados fueron creados desde la configuracion de las tablas antes de ejecutar el comando php aritsan mirgrate.
+Los procedimientos almacenados fueron creados en laravel en la configuracion de las tablas antes de ejecutar el comando php aritsan mirgrate.
 Ejemplo de procedimiento almacenado usado en la creacion de la tareas:
 
-DB::unprepared("
-            DROP PROCEDURE IF EXISTS insertarTarea;
-            CREATE PROCEDURE insertarTarea (
-                IN p_titulo VARCHAR(255),
-                IN p_descripcion TEXT,
-                IN p_fecha_limite DATE,
-                IN p_user_id BIGINT
-            )
-            BEGIN
-                INSERT INTO tareas (titulo, descripcion, fecha_limite, user_id)
-                VALUES (p_titulo, p_descripcion, p_fecha_limite, p_user_id);
-                SELECT * FROM tareas WHERE id = LAST_INSERT_ID();
-            END;
-            
-        ");
+-DB::unprepared("
+-            DROP PROCEDURE IF EXISTS insertarTarea;
+-            CREATE PROCEDURE insertarTarea (
+-                IN p_titulo VARCHAR(255),
+-                IN p_descripcion TEXT,
+-                IN p_fecha_limite DATE,
+-                IN p_user_id BIGINT
+-            )
+-           BEGIN
+-                INSERT INTO tareas (titulo, descripcion, fecha_limite, user_id)
+-                VALUES (p_titulo, p_descripcion, p_fecha_limite, p_user_id);
+-                SELECT * FROM tareas WHERE id = LAST_INSERT_ID();
+-            END;
+-        ");
 
 
   
