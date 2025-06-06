@@ -32,6 +32,7 @@ return new class extends Migration
             BEGIN
                 INSERT INTO tareas (titulo, descripcion, fecha_limite, user_id)
                 VALUES (p_titulo, p_descripcion, p_fecha_limite, p_user_id);
+                SELECT * FROM tareas WHERE id = LAST_INSERT_ID();
             END;
             
         ");

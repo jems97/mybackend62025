@@ -12,8 +12,8 @@ class TareasController extends Controller
 {
     public function newtask(Request $request)
     {        
-        //Con procedimiento almacenado para insertar tareas
-        DB::statement('CALL insertarTarea(?, ?, ?, ?);', [
+        //Con procedimiento almacenado para insertar tareas y devolver la tarea insertada
+        $nuevatarea = DB::select('CALL insertarTarea(?, ?, ?, ?);', [
             $request->titulo,
             $request->descripcion,
             $request->fecha_limite,
@@ -22,12 +22,14 @@ class TareasController extends Controller
 
         return response()->json([
             "status" => "success",
+            "tareas" => $nuevatarea[0],
             "msg" => "Tarea creada exitosamente"
         ]);
     }
 
     public function gettask($user_id)
     {
+        //enviar las tareas en orden de enero a diciembre
         $tareas = Tareas::where('user_id', '=', $user_id)
         ->orderBy('fecha_limite', 'asc')
         ->get();

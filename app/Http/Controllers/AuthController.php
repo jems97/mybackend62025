@@ -18,10 +18,14 @@ class AuthController extends Controller
         //Log::info('A validar...');
         //Validar si el usuario o el correo ya esta registrado en la bdd
         if(User::where('user_name', $request->user_name)->exists()){
-            return response()->json(['msg' => 'Usuario ya registrado'], 409);
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Usuario ya registrado']);
         }
         if(User::where('email', $request->email)->exists()){
-            return response()->json(['msg' => 'Correo ya registrado'], 409);
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Correo ya registrado']);
         }
         $request->validate([
         'user_name' => 'required|unique:users',
@@ -67,7 +71,7 @@ class AuthController extends Controller
         }else{
             return response()->json([
                 "status" => "error",
-                "msg" => "Usuario no Registrado"
+                "msg" => "Correo electrónico no Registrado"
             ]);
         }
     
